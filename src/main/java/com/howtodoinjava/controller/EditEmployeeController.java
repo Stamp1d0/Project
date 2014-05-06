@@ -1,5 +1,9 @@
 package com.howtodoinjava.controller;
 
+import com.howtodoinjava.entity.EmployeeEntity;
+import com.howtodoinjava.entity.UserEntity;
+import com.howtodoinjava.service.EmployeeManager;
+import com.howtodoinjava.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -9,15 +13,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.howtodoinjava.entity.EmployeeEntity;
-import com.howtodoinjava.service.EmployeeManager;
-
 @Controller
 public class EditEmployeeController {
 
 	@Autowired
 	private EmployeeManager employeeManager;
-	
+	private UserManager userManager;
+
 	public void setEmployeeManager(EmployeeManager employeeManager) {
 		this.employeeManager = employeeManager;
 	}
@@ -26,6 +28,7 @@ public class EditEmployeeController {
 	public String defaultPage(ModelMap map) {
 		return "redirect:/list";
 	}
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listEmployees(ModelMap map) {
 		
@@ -40,6 +43,12 @@ public class EditEmployeeController {
 		employeeManager.addEmployee(employee);
 		return "redirect:/list";
 	}
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(@ModelAttribute(value = "user") UserEntity user,BindingResult result) {
+        userManager.addUser(user);
+        return "redirect:/list";
+    }
 
 	@RequestMapping("/delete/{employeeId}")
 	public String deleteEmplyee(@PathVariable("employeeId") Integer employeeId) {

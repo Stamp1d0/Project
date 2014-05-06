@@ -13,7 +13,7 @@
 <form:form method="post" action="add" commandName="employee">
     <table>
     <tr>
-        <td><form:label path="firstname">firstname</form:label></td>
+        <td><form:label path="firstname"><spring:message code="label.firstname"/></form:label></td>
         <td><form:input path="firstname" /></td>
     </tr>
     <tr>
