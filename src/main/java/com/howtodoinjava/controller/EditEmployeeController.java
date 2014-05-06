@@ -18,6 +18,7 @@ public class EditEmployeeController {
 
 	@Autowired
 	private EmployeeManager employeeManager;
+    @Autowired
 	private UserManager userManager;
 
 	public void setEmployeeManager(EmployeeManager employeeManager) {
@@ -34,7 +35,6 @@ public class EditEmployeeController {
 		
 		map.addAttribute("employee", new EmployeeEntity());
 		map.addAttribute("employeeList", employeeManager.getAllEmployees());
-
 		return "editEmployeeList";
 	}
 
@@ -45,7 +45,14 @@ public class EditEmployeeController {
 	}
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(@ModelAttribute(value = "user") UserEntity user,BindingResult result) {
+    public String register(ModelMap map) {
+        map.addAttribute("user", new UserEntity());
+        return "register";
+    }
+
+    @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public String addUser(@ModelAttribute(value = "user") UserEntity user,BindingResult result) {
+        user.setEnabled(1);
         userManager.addUser(user);
         return "redirect:/list";
     }

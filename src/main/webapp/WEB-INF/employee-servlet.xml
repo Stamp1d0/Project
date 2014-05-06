@@ -78,7 +78,9 @@
     
     <bean id="employeeDAO" class="com.howtodoinjava.dao.EmployeeDaoImpl"></bean>
     <bean id="employeeManager" class="com.howtodoinjava.service.EmployeeManagerImpl"></bean>
- 
+    <bean id="userDAO" class="com.howtodoinjava.dao.UserDaoImpl"></bean>
+    <bean id="userManager" class="com.howtodoinjava.service.UserManagerImpl"></bean>
+
     <tx:annotation-driven />
     <bean id="transactionManager"
         class="org.springframework.orm.hibernate3.HibernateTransactionManager">

@@ -31,7 +31,7 @@
     </tr>
     <tr>
         <td colspan="2">
-            <input type="submit" value="label.add"/>
+            <input type="submit" value="<spring:message code="label.add"/>"/>
         </td>
     </tr>
 </table>
