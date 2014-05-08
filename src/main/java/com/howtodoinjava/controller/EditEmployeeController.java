@@ -27,7 +27,7 @@ public class EditEmployeeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String defaultPage(ModelMap map) {
-		return "redirect:/list";
+		return "redirect:/life";
 	}
 
     @RequestMapping(value = "/life", method = RequestMethod.GET)

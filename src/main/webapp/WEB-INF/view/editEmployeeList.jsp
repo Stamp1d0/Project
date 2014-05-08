@@ -1,16 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-<head>
-    <title>Spring 3 hibernate integration example on www.howtodoinjava.com</title>
-</head>
-<body>
- 
+<%@ include file="layout/header.jsp" %>
 <h2>Employee Management Screen</h2>
  <h6><a href="<c:url value='j_spring_security_logout'/>">Click here to logout</a></h6>
-<a href="?lang=en">en</a>|<a href="?lang=ru">ru</a>
+
 <form:form method="post" action="add" commandName="employee">
     <table>
     <tr>
@@ -57,6 +48,4 @@
 </c:forEach>
 </table>
 </c:if>
- 
-</body>
-</html>
+<%@ include file="layout/footer.jsp" %>
