@@ -1,6 +1,5 @@
 package com.howtodoinjava.service;
 
-import com.howtodoinjava.dao.EmployeeDAO;
 import com.howtodoinjava.dao.UserDAO;
 import com.howtodoinjava.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,20 @@ public class UserManagerImpl implements UserManager {
 	
 	@Autowired
     private UserDAO userDAO;
+
+    @Override
+    @Transactional
+    public String getCurrentUserName()
+    {
+        return userDAO.getCurrentUserName();
+    }
+
+    @Override
+    @Transactional
+    public void setCurrentUser(UserEntity user)
+    {
+         userDAO.setCurrentUser(user);
+    }
 
 	@Override
 	@Transactional
@@ -33,7 +46,4 @@ public class UserManagerImpl implements UserManager {
 		userDAO.deleteUser(userId);
 	}
 
-	public void setEmployeeDAO(UserDAO userDAO) {
-		this.userDAO = userDAO;
-	}
 }

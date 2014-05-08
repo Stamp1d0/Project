@@ -4,6 +4,8 @@ import com.howtodoinjava.entity.EmployeeEntity;
 import com.howtodoinjava.entity.UserEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +15,18 @@ public class UserDaoImpl implements UserDAO  {
 
 	@Autowired
     private SessionFactory sessionFactory;
-	
+
+    @Override
+    public String getCurrentUserName() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String name = user.getUsername();
+        return name;
+    }
+
+    public void setCurrentUser(UserEntity currentUser) {
+
+    }
+
 	@Override
 	public void addUser(UserEntity user) {
 		this.sessionFactory.getCurrentSession().save(user);

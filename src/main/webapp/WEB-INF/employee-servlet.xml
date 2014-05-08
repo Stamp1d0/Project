@@ -36,18 +36,22 @@
         <property name="basename" value="classpath:messages" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
+
     <bean id="localeResolver"
           class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
         <property name="defaultLocale" value="en" />
     </bean>
+
     <bean id="localeChangeInterceptor"
           class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="lang" />
     </bean>
-    <bean id="handlerMapping"
-          class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping" >
         <property name="interceptors">
-            <ref bean="localeChangeInterceptor" />
+            <list>
+                <ref bean="localeChangeInterceptor" />
+            </list>
         </property>
     </bean>
 
@@ -84,6 +88,7 @@
     <bean id="employeeManager" class="com.howtodoinjava.service.EmployeeManagerImpl"></bean>
     <bean id="userDAO" class="com.howtodoinjava.dao.UserDaoImpl"></bean>
     <bean id="userManager" class="com.howtodoinjava.service.UserManagerImpl"></bean>
+    <bean id="currentUser" class="com.howtodoinjava.entity.UserEntity"></bean>
 
     <tx:annotation-driven />
     <bean id="transactionManager"

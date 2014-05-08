@@ -4,13 +4,15 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <link href="<c:url value="/resources/css/foundation.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/foundation.min.css" />" rel="stylesheet">
-<script src="/resources/vendor/modernizr.js"></script>
-<script src="/resources/vendor/jquery.js"></script>
-<script src="/resources/foundation/js/foundation/foundation.js"></script>
-<script src="/resources/foundation/js/foundation/foundation.topbar.js"></script>
-<script src="/resources/foundation/js/foundation/foundation.dropdown.js"></script>
+<script src="<c:url value="/resources/js/vendor/modernizr.js" />"></script>
+<script src="<c:url value="/resources/js/vendor/jquery.js"/>"></script>
+<script src="<c:url value="/resources/js/foundation/foundation.js"/>"></script>
+<script src="<c:url value="/resources/js/foundation/foundation.topbar.js"/>"></script>
+<script src="<c:url value="/resources/js/foundation/foundation.dropdown.js"/>"></script>
 <script>
-    $(document).foundation();
+    $( document ).ready(function() {
+        $(document).foundation();
+    });
 </script>
 <html>
 <head>
@@ -35,10 +37,10 @@
                 <a href="#">Language</a>
                 <ul class="dropdown">
                     <li><a href="?lang=en">en</a></li>
-
+                    <li><a href="?lang=ru">ru</a></li>
                 </ul>
             </li>
-            <li class="active"><a>User</a></li>
+            <li class="active"><a>${username}</a></li>
             <li><a href="<c:url value='j_spring_security_logout'/>"><spring:message code="label.logout"/></a></li>
         </ul>
 

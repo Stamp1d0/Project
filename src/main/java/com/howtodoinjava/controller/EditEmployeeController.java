@@ -32,12 +32,13 @@ public class EditEmployeeController {
 
     @RequestMapping(value = "/life", method = RequestMethod.GET)
     public String life(ModelMap map) {
+        map.addAttribute("username", userManager.getCurrentUserName());
         return "Life";
     }
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listEmployees(ModelMap map) {
-
+        map.addAttribute("username", userManager.getCurrentUserName());
 		map.addAttribute("employee", new EmployeeEntity());
 		map.addAttribute("employeeList", employeeManager.getAllEmployees());
 		return "editEmployeeList";
