@@ -1,6 +1,4 @@
 <%@ include file="layout/header.jsp" %>
-<%@ page contentType="text/html;charset=UTF-8" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <h2>Employee Management Screen</h2>
 Language : <a href="?lang=en">English</a>|<a href="?lang=ru">Russian</a>
 Current Locale : ${pageContext.response.locale}
