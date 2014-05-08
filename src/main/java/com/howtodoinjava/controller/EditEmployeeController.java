@@ -30,9 +30,14 @@ public class EditEmployeeController {
 		return "redirect:/list";
 	}
 
+    @RequestMapping(value = "/life", method = RequestMethod.GET)
+    public String life(ModelMap map) {
+        return "Life";
+    }
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String listEmployees(ModelMap map) {
-		
+
 		map.addAttribute("employee", new EmployeeEntity());
 		map.addAttribute("employeeList", employeeManager.getAllEmployees());
 		return "editEmployeeList";
@@ -50,9 +55,11 @@ public class EditEmployeeController {
         return "register";
     }
 
+
     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
     public String addUser(@ModelAttribute(value = "user") UserEntity user,BindingResult result) {
         user.setEnabled(1);
+        user.setRolename("ROLE_USER");
         userManager.addUser(user);
         return "redirect:/list";
     }

@@ -16,7 +16,18 @@ public class UserEntity {
  
     @Column(name="password")
     private String password;
- 
+
+    @Column(name="rolename")
+    private String rolename;
+
+    public String getRolename() {
+        return rolename;
+    }
+
+    public void setRolename(String rolename) {
+        this.rolename = rolename;
+    }
+
     @Column(name="enabled")
     private int enabled;
 
