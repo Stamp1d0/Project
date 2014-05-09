@@ -11,8 +11,10 @@
 		<intercept-url pattern="/list" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/delete/*" access="hasRole('ROLE_USER')" />
         <intercept-url pattern="/life" access="hasRole('ROLE_USER')" />
-		<form-login login-page="/login" default-target-url="/list" authentication-failure-url="/accessdenied" />
+		<form-login login-page="/login" default-target-url="/list"
+                    authentication-failure-url="/login?error=true" />
 		<logout logout-success-url="/logout" />
+
 	</http>
 
 	<authentication-manager alias="authenticationManager">
