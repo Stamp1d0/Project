@@ -11,5 +11,5 @@ public interface UserDAO
     public void deleteUser(Integer userId);
     public void setCurrentUser(UserEntity currentUser);
     public String getCurrentUserName();
-    public boolean hasUser(String username);
+    public String getCurrentUserRole();
 }

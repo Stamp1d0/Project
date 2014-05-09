@@ -35,4 +35,4 @@
         </fieldset>
     </form>
 </div>
-<%@ include file="layout/empty/footer.jsp" %>
+<%@ include file="layout/footer.jsp" %>

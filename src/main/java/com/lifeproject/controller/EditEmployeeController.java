@@ -6,6 +6,7 @@ import com.lifeproject.model.RegisterModel;
 import com.lifeproject.service.EmployeeManager;
 import com.lifeproject.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -36,12 +37,20 @@ public class EditEmployeeController {
     @RequestMapping(value = "/life", method = RequestMethod.GET)
     public String life(ModelMap map) {
         map.addAttribute("username", userManager.getCurrentUserName());
+        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN")==0)
+        {
+            map.addAttribute("isAdmin",true);
+        }
         return "life";
     }
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
     public String messages(ModelMap map) {
         map.addAttribute("username", userManager.getCurrentUserName());
+        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN")==0)
+        {
+            map.addAttribute("isAdmin",true);
+        }
         return "messages";
     }
 
@@ -49,6 +58,10 @@ public class EditEmployeeController {
     public String listEmployees(ModelMap map) {
         map.addAttribute("username", userManager.getCurrentUserName());
         map.addAttribute("userList", userManager.getAllUsers());
+        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN")==0)
+        {
+            map.addAttribute("isAdmin",true);
+        }
         return "editUserList";
     }
 
@@ -70,7 +83,7 @@ public class EditEmployeeController {
         List<UserEntity> users = userManager.getAllUsers();
         boolean hasUser = false;
         for (UserEntity user : users) {
-            if (user.getUsername().toLowerCase() == reg.getUsername().toLowerCase()) {
+            if (user.getUsername().toLowerCase().compareTo(reg.getUsername().toLowerCase())==0) {
                 hasUser = true;
             }
         }
@@ -107,6 +120,7 @@ public class EditEmployeeController {
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(ModelMap model) {
-        return "logout";
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return "login";
     }
 }

@@ -1,4 +1,4 @@
-<%@ include file="/empty/header.jsp" %>
+<%@ include file="empty/header.jsp" %>
 <nav class="top-bar" data-topbar>
     <ul class="title-area">
         <li class="name">
@@ -26,7 +26,9 @@
         <ul class="left">
             <li><a href="/life"><spring:message code="label.cellular"/></a></li>
             <li><a href="/messages"><spring:message code="label.messages"/></a></li>
-            <li><a href="/list"><spring:message code="label.adminPlace"/></a></li>
+            <c:if test="${isAdmin}">
+                <li><a href="/list"><spring:message code="label.adminPlace"/></a></li>
+            </c:if>
         </ul>
     </section>
 </nav>

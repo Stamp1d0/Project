@@ -10,5 +10,5 @@ public interface UserManager {
     public void deleteUser(Integer userId);
     public String getCurrentUserName();
     public void setCurrentUser(UserEntity user);
-    public boolean hasUser(String username);
+    public String getCurrentUserRole();
 }
