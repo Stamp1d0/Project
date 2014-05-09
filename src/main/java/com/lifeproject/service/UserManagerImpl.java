@@ -14,6 +14,11 @@ public class UserManagerImpl implements UserManager {
 	@Autowired
     private UserDAO userDAO;
 
+    public boolean hasUser(String username)
+    {
+        return userDAO.hasUser(username);
+    }
+
     @Override
     @Transactional
     public String getCurrentUserName()

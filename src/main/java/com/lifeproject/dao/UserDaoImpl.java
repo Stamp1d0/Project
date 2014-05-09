@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -36,6 +37,17 @@ public class UserDaoImpl implements UserDAO  {
 	public List<UserEntity> getAllUsers() {
 		return this.sessionFactory.getCurrentSession().createQuery("from UserEntity").list();
 	}
+
+    public boolean hasUser(String username){
+        List<UserEntity> users = this.sessionFactory.getCurrentSession().createQuery("from UserEntity").list();
+        for (UserEntity user : users) {
+            if (user.getUsername().toLowerCase()==username.toLowerCase())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 	@Override
 	public void deleteUser(Integer userId) {
