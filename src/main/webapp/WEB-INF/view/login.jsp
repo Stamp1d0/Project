@@ -28,6 +28,10 @@
                     <small class="error">Password is required</small>
                 </div>
             </div>
+            <div>
+                <input type="checkbox" name="_spring_security_remember_me" />
+                <label>Remember me </label>
+            </div>
             <div style="text-align: center">
                 <input class="medium button" name="submit" type="submit" value="Войти">
             </div>

@@ -115,7 +115,7 @@ public class EditEmployeeController {
     @RequestMapping(value = "/accessdenied", method = RequestMethod.GET)
     public String loginerror(ModelMap model) {
         model.addAttribute("error", "true");
-        return "denied";
+        return "/denied.jsp";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
