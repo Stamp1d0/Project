@@ -12,6 +12,7 @@
         <intercept-url pattern="/delete/*" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/life" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
         <intercept-url pattern="/messages" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+        <intercept-url pattern="/changeLocale" access="permitAll" />
 		<form-login login-page="/login" default-target-url="/life"
                     authentication-failure-url="/login?error=true" />
 		<logout logout-success-url="/login" />

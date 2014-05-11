@@ -28,6 +28,23 @@ public class EditEmployeeController {
     @Autowired
     private UserManager userManager;
 
+    private boolean isAdmin()
+    {
+        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN")==0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private String currentLocale()
+    {
+        if (LocaleContextHolder.getLocale().toString().compareTo("en")==0)
+        {
+           return "ru";
+        }
+        return "en";
+    }
 
     public void setEmployeeManager(EmployeeManager employeeManager) {
         this.employeeManager = employeeManager;
@@ -41,10 +58,8 @@ public class EditEmployeeController {
     @RequestMapping(value = "/life", method = RequestMethod.GET)
     public String life(ModelMap map) {
         map.addAttribute("username", userManager.getCurrentUserName());
-        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN")==0)
-        {
-            map.addAttribute("isAdmin",true);
-        }
+        map.addAttribute("isAdmin",this.isAdmin());
+        map.addAttribute("locale",this.currentLocale());
         return "life";
     }
 
@@ -55,14 +70,12 @@ public class EditEmployeeController {
       //  response.addCookie(cookie);
     //    request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, Locale.ENGLISH);
         map.addAttribute("username", userManager.getCurrentUserName());
-        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN")==0)
-        {
-            map.addAttribute("isAdmin",true);
-        }
+        map.addAttribute("isAdmin",this.isAdmin());
+        map.addAttribute("locale",this.currentLocale());
         return "messages";
     }
 
-    @RequestMapping(value = "/changeLocale",method = RequestMethod.GET, produces={"application/json; charset=UTF-8"})
+    @RequestMapping(value = "/changeLocale",method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
     public @ResponseBody void changeLocal(HttpServletRequest request, HttpServletResponse response) {
         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
         if (LocaleContextHolder.getLocale().toString().compareTo("en")==0)
@@ -79,10 +92,8 @@ public class EditEmployeeController {
     public String listEmployees(ModelMap map) {
         map.addAttribute("username", userManager.getCurrentUserName());
         map.addAttribute("userList", userManager.getAllUsers());
-        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN")==0)
-        {
-            map.addAttribute("isAdmin",true);
-        }
+        map.addAttribute("locale",this.currentLocale());
+        map.addAttribute("isAdmin",this.isAdmin());
         return "editUserList";
     }
 
@@ -95,6 +106,7 @@ public class EditEmployeeController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(ModelMap map) {
         map.addAttribute("reg", new RegisterModel());
+        map.addAttribute("locale",this.currentLocale());
         return "register";
     }
 
@@ -129,7 +141,8 @@ public class EditEmployeeController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(ModelMap model) {
+    public String login(ModelMap map) {
+        map.addAttribute("locale",this.currentLocale());
         return "login";
     }
 

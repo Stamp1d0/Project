@@ -13,16 +13,6 @@
         <!-- Right Nav Section -->
         <ul class="right">
             <li><a id="lang" onclick="$.ajax({type: 'post',url: '/changeLocale',success: location.reload()});">${locale}</a></li>
-            <li class="active"><a>${username}</a></li>
-            <li><a href="<c:url value='j_spring_security_logout'/>"><spring:message code="label.logout"/></a></li>
-        </ul>
-        <!-- Left Nav Section -->
-        <ul class="left">
-            <li><a href="/life"><spring:message code="menu.main"/></a></li>
-            <li><a href="/messages"><spring:message code="label.messages"/></a></li>
-            <c:if test="${isAdmin}">
-                <li><a href="/list"><spring:message code="label.adminPlace"/></a></li>
-            </c:if>
         </ul>
     </section>
 </nav>
