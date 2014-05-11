@@ -6,6 +6,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <link href="<c:url value="/resources/css/foundation.css" />" rel="stylesheet">
 <link href="<c:url value="/resources/css/foundation.min.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/accessibility_foundicons.css" />" rel="stylesheet">
 <script src="<c:url value="/resources/js/vendor/modernizr.js" />"></script>
 <script src="<c:url value="/resources/js/vendor/jquery.js"/>"></script>
 <script src="<c:url value="/resources/js/foundation/foundation.js"/>"></script>

@@ -3,4 +3,5 @@
 <%request.setCharacterEncoding("UTF-8");%>
 <%@ include file="layout/header.jsp" %>
 сообщения
+change ${cookie.colorCookie.value}
 <%@ include file="layout/footer.jsp" %>

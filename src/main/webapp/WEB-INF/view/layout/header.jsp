@@ -12,7 +12,11 @@
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-            <li><a id="lang" onclick="$.ajax({type: 'post',url: '/changeLocale',success: location.reload()});">${locale}</a></li>
+            <li>
+                <a onclick="changeColor()"><i class="foundicon-view-mode"></i></a>
+            </li>
+            <li><a id="lang"
+                   onclick="$.ajax({type: 'post',url: '/changeLocale',success: location.reload()});">${locale}</a></li>
             <li class="active"><a>${username}</a></li>
             <li><a href="<c:url value='j_spring_security_logout'/>"><spring:message code="label.logout"/></a></li>
         </ul>
@@ -26,6 +30,19 @@
         </ul>
     </section>
 </nav>
-<script>
 
+<script>
+    function changeColor() {
+        var cookie = getCookie("colorCookie");
+        if (cookie=="light")
+            document.cookie="colorCookie=dark"
+        else
+            document.cookie="colorCookie=light"
+        location.reload();
+    }
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
 </script>

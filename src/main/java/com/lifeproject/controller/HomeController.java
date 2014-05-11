@@ -24,20 +24,16 @@ public class HomeController {
     @Autowired
     private UserManager userManager;
 
-    private boolean isAdmin()
-    {
-        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN")==0)
-        {
+    private boolean isAdmin() {
+        if (userManager.getCurrentUserRole().compareTo("ROLE_ADMIN") == 0) {
             return true;
         }
         return false;
     }
 
-    private String currentLocale()
-    {
-        if (LocaleContextHolder.getLocale().toString().compareTo("en")==0)
-        {
-           return "ru";
+    private String currentLocale() {
+        if (LocaleContextHolder.getLocale().toString().compareTo("en") == 0) {
+            return "ru";
         }
         return "en";
     }
@@ -50,39 +46,27 @@ public class HomeController {
     @RequestMapping(value = "/life", method = RequestMethod.GET)
     public String life(ModelMap map) {
         map.addAttribute("username", userManager.getCurrentUserName());
-        map.addAttribute("isAdmin",this.isAdmin());
-        map.addAttribute("locale",this.currentLocale());
+        map.addAttribute("isAdmin", this.isAdmin());
+        map.addAttribute("locale", this.currentLocale());
         return "life";
     }
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
     public String messages(ModelMap map) {
-
         map.addAttribute("username", userManager.getCurrentUserName());
-        map.addAttribute("isAdmin",this.isAdmin());
-        map.addAttribute("locale",this.currentLocale());
+        map.addAttribute("isAdmin", this.isAdmin());
+        map.addAttribute("locale", this.currentLocale());
         return "messages";
     }
 
-    @RequestMapping(value = "/changeColorScheme",method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
-    public @ResponseBody void changeColorScheme(HttpServletRequest request, HttpServletResponse response,
-                                                @CookieValue(value = "foo", defaultValue = "hello") String colorCookie) {
-
-        //  lang = "ru";
-        //  Cookie cookie = new Cookie("lang", lang);
-        //  response.addCookie(cookie);
-        //    request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, Locale.ENGLISH);
-    }
-
-    @RequestMapping(value = "/changeLocale",method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
-    public @ResponseBody void changeLocal(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/changeLocale", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    public
+    @ResponseBody
+    void changeLocal(HttpServletRequest request, HttpServletResponse response) {
         LocaleResolver localeResolver = RequestContextUtils.getLocaleResolver(request);
-        if (LocaleContextHolder.getLocale().toString().compareTo("en")==0)
-        {
+        if (LocaleContextHolder.getLocale().toString().compareTo("en") == 0) {
             localeResolver.setLocale(request, response, StringUtils.parseLocaleString("ru"));
-        }
-        else
-        {
+        } else {
             localeResolver.setLocale(request, response, StringUtils.parseLocaleString("en"));
         }
     }
@@ -91,15 +75,15 @@ public class HomeController {
     public String listEmployees(ModelMap map) {
         map.addAttribute("username", userManager.getCurrentUserName());
         map.addAttribute("userList", userManager.getAllUsers());
-        map.addAttribute("locale",this.currentLocale());
-        map.addAttribute("isAdmin",this.isAdmin());
+        map.addAttribute("locale", this.currentLocale());
+        map.addAttribute("isAdmin", this.isAdmin());
         return "editUserList";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(ModelMap map) {
         map.addAttribute("reg", new RegisterModel());
-        map.addAttribute("locale",this.currentLocale());
+        map.addAttribute("locale", this.currentLocale());
         return "register";
     }
 
@@ -109,7 +93,7 @@ public class HomeController {
         List<UserEntity> users = userManager.getAllUsers();
         boolean hasUser = false;
         for (UserEntity user : users) {
-            if (user.getUsername().toLowerCase().compareTo(reg.getUsername().toLowerCase())==0) {
+            if (user.getUsername().toLowerCase().compareTo(reg.getUsername().toLowerCase()) == 0) {
                 hasUser = true;
             }
         }
@@ -135,7 +119,7 @@ public class HomeController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(ModelMap map) {
-        map.addAttribute("locale",this.currentLocale());
+        map.addAttribute("locale", this.currentLocale());
         return "login";
     }
 
