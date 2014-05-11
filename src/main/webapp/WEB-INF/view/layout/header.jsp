@@ -1,3 +1,4 @@
+<%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="empty/header.jsp" %>
 <nav class="top-bar" data-topbar>
     <ul class="title-area">
@@ -11,17 +12,10 @@
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-            <li class="has-dropdown">
-                <a href="#">Language</a>
-                <ul class="dropdown">
-                    <li><a href="?lang=en">en</a></li>
-                    <li><a href="?lang=ru">ru</a></li>
-                </ul>
-            </li>
+            <li><a id="lang" onclick="$.ajax({type: 'get',url: '/changeLocale',success: location.reload()});">${pageContext.response.locale}</a></li>
             <li class="active"><a>${username}</a></li>
             <li><a href="<c:url value='j_spring_security_logout'/>"><spring:message code="label.logout"/></a></li>
         </ul>
-
         <!-- Left Nav Section -->
         <ul class="left">
             <li><a href="/life"><spring:message code="label.cellular"/></a></li>
@@ -32,3 +26,6 @@
         </ul>
     </section>
 </nav>
+<script>
+
+</script>
