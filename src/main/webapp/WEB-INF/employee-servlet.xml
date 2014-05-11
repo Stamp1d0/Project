@@ -83,9 +83,7 @@
        		</value>
         </property>
     </bean>
-    
-    <bean id="employeeDAO" class="com.lifeproject.dao.EmployeeDaoImpl"></bean>
-    <bean id="employeeManager" class="com.lifeproject.service.EmployeeManagerImpl"></bean>
+
     <bean id="userDAO" class="com.lifeproject.dao.UserDaoImpl"></bean>
     <bean id="userManager" class="com.lifeproject.service.UserManagerImpl"></bean>
 

@@ -1,9 +1,7 @@
 package com.lifeproject.controller;
 
-import com.lifeproject.entity.EmployeeEntity;
 import com.lifeproject.entity.UserEntity;
 import com.lifeproject.model.RegisterModel;
-import com.lifeproject.service.EmployeeManager;
 import com.lifeproject.service.UserManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -21,10 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-public class EditEmployeeController {
+public class HomeController {
 
-    @Autowired
-    private EmployeeManager employeeManager;
     @Autowired
     private UserManager userManager;
 
@@ -46,10 +42,6 @@ public class EditEmployeeController {
         return "en";
     }
 
-    public void setEmployeeManager(EmployeeManager employeeManager) {
-        this.employeeManager = employeeManager;
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String defaultPage(ModelMap map) {
         return "redirect:/life";
@@ -65,14 +57,21 @@ public class EditEmployeeController {
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
     public String messages(ModelMap map) {
-      //  lang = "ru";
-      //  Cookie cookie = new Cookie("lang", lang);
-      //  response.addCookie(cookie);
-    //    request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, Locale.ENGLISH);
+
         map.addAttribute("username", userManager.getCurrentUserName());
         map.addAttribute("isAdmin",this.isAdmin());
         map.addAttribute("locale",this.currentLocale());
         return "messages";
+    }
+
+    @RequestMapping(value = "/changeColorScheme",method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
+    public @ResponseBody void changeColorScheme(HttpServletRequest request, HttpServletResponse response,
+                                                @CookieValue(value = "foo", defaultValue = "hello") String colorCookie) {
+
+        //  lang = "ru";
+        //  Cookie cookie = new Cookie("lang", lang);
+        //  response.addCookie(cookie);
+        //    request.getSession().setAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME, Locale.ENGLISH);
     }
 
     @RequestMapping(value = "/changeLocale",method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
@@ -95,12 +94,6 @@ public class EditEmployeeController {
         map.addAttribute("locale",this.currentLocale());
         map.addAttribute("isAdmin",this.isAdmin());
         return "editUserList";
-    }
-
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addEmployee(@ModelAttribute(value = "employee") EmployeeEntity employee, BindingResult result) {
-        employeeManager.addEmployee(employee);
-        return "redirect:/list";
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
