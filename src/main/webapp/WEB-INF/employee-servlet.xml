@@ -1,6 +1,7 @@
 <?xml  version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:aop="http://www.springframework.org/schema/aop"
     xmlns:context="http://www.springframework.org/schema/context"
@@ -10,6 +11,8 @@
     xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:util="http://www.springframework.org/schema/util"
     xsi:schemaLocation="
+    http://www.springframework.org/schema/websocket
+    http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd
             http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -19,7 +22,12 @@
         http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-
+    <websocket:message-broker application-destination-prefix="/app">
+        <websocket:stomp-endpoint path="/hello">
+            <websocket:sockjs/>
+        </websocket:stomp-endpoint>
+        <websocket:simple-broker prefix="/topic"/>
+    </websocket:message-broker>
     <context:annotation-config />
     <context:component-scan base-package="com.lifeproject.controller" />
 

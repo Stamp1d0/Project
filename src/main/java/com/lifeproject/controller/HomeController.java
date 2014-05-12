@@ -54,7 +54,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/life", method = RequestMethod.GET)
-    public String life(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "light") String colorCookie) {
+    public String life(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "dark") String colorCookie) {
         map.addAttribute("username", userManager.getCurrentUserName());
         map.addAttribute("isAdmin", this.isAdmin());
         map.addAttribute("locale", this.currentLocale());
@@ -63,7 +63,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
-    public String messages(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "light") String colorCookie) {
+    public String messages(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "dark") String colorCookie) {
         map.addAttribute("username", userManager.getCurrentUserName());
         map.addAttribute("isAdmin", this.isAdmin());
         map.addAttribute("locale", this.currentLocale());
@@ -84,7 +84,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String listEmployees(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "light") String colorCookie) {
+    public String listEmployees(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "dark") String colorCookie) {
         map.addAttribute("username", userManager.getCurrentUserName());
         map.addAttribute("userList", userManager.getAllUsers());
         map.addAttribute("locale", this.currentLocale());
@@ -94,7 +94,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public String register(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "light") String colorCookie) {
+    public String register(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "dark") String colorCookie) {
         map.addAttribute("reg", new RegisterModel());
         map.addAttribute("locale", this.currentLocale());
         map.addAttribute("isLight", this.isLightColor(colorCookie));
@@ -132,7 +132,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "light") String colorCookie) {
+    public String login(ModelMap map, @CookieValue(value = "colorCookie", defaultValue = "dark") String colorCookie) {
         map.addAttribute("locale", this.currentLocale());
         map.addAttribute("isLight", this.isLightColor(colorCookie));
         return "login";

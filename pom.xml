@@ -15,7 +15,7 @@
 		</repository>
 	</repositories>
   <properties>
-    <org.springframework.version>3.2.6.RELEASE</org.springframework.version>
+    <org.springframework.version>4.0.0.RELEASE</org.springframework.version>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
       <compileSource>1.6</compileSource>    
   </properties>
@@ -165,7 +165,16 @@
 	  <artifactId>spring-webmvc-portlet</artifactId>
 	  <version>${org.springframework.version}</version>
 	</dependency>
-	 
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-messaging</artifactId>
+          <version>${org.springframework.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-websocket</artifactId>
+          <version>${org.springframework.version}</version>
+      </dependency>
 	<!--
 	    Support for testing Spring applications with tools such as JUnit and TestNG
 	    This artifact is generally always defined with a 'test' scope for the integration testing framework and unit testing stubs
