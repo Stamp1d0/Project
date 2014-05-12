@@ -12,6 +12,7 @@
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
+            <li><a onclick="changeColor()"><i class="foundicon-view-mode"></i></a></li>
             <li><a id="lang" onclick="$.ajax({type: 'post',url: '/changeLocale',success: location.reload()});">${locale}</a></li>
         </ul>
     </section>

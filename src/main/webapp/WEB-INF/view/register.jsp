@@ -15,7 +15,7 @@
             <legend><spring:message code="register.reg"/></legend>
             <div class="row">
                 <div class="name-field">
-                    <label><spring:message code="login.name"/>
+                    <label name="text"><spring:message code="login.name"/>
                         <form:input type='text' path="username" id="someinput"/>
                     </label>
                     <small class="error"><spring:message code="login.reqname"/></small>
@@ -23,7 +23,7 @@
             </div>
             <div class="row">
                 <div class="password-field">
-                    <label><spring:message code="login.pass"/>
+                    <label name="text"><spring:message code="login.pass"/>
                         <form:input type='password' path="password" id="password"/>
                     </label>
                     <small class="error"><spring:message code="login.reqpass"/></small>
@@ -31,7 +31,7 @@
             </div>
             <div class="row">
                 <div class="password-confirmation-field">
-                    <label><spring:message code="register.confirm"/>
+                    <label name="text"><spring:message code="register.confirm"/>
                         <form:input type='password' path="confirmPassword" required="" data-equalto="password"/>
                     </label>
                     <small class="error"><spring:message code="register.didnomatch"/></small>

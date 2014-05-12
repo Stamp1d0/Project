@@ -2,7 +2,7 @@
 <%@page pageEncoding="UTF-8" %>
 <%request.setCharacterEncoding("UTF-8");%>
 <%@ include file="layout/header.jsp" %>
-<div class="row">
+<div class="small-5 small-centered columns">
     <h2>Users Management Screen</h2>
     <table>
         <thead>

@@ -14,16 +14,34 @@
 <script src="<c:url value="/resources/js/foundation/foundation.dropdown.js"/>"></script>
 <script src="<c:url value="/resources/js/foundation/foundation.abide.js"/>"></script>
 <script src="<c:url value="/resources/js/foundation/foundation.alert.js"/>"></script>
+
 <script>
     $( document ).ready(function() {
         $(document).foundation();
     });
+    function changeColor() {
+        var cookie = getCookie("colorCookie");
+        if (cookie=="light")
+        {
+            document.cookie="colorCookie=dark";
+        }
+        else
+        {
+            document.cookie="colorCookie=light";
+        }
+        location.reload();
+    }
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
+    }
 </script>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Life</title>
-</head>
-<body>
 
+        <title>Life</title>
+</head>
+<body id="body">

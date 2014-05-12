@@ -1,5 +1,6 @@
 <%@ taglib prefix="input" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="empty/header.jsp" %>
+
 <nav class="top-bar" data-topbar>
     <ul class="title-area">
         <li class="name">
@@ -12,9 +13,7 @@
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-            <li>
-                <a onclick="changeColor()"><i class="foundicon-view-mode"></i></a>
-            </li>
+            <li><a onclick="changeColor()"><i class="foundicon-view-mode"></i></a></li>
             <li><a id="lang"
                    onclick="$.ajax({type: 'post',url: '/changeLocale',success: location.reload()});">${locale}</a></li>
             <li class="active"><a>${username}</a></li>
@@ -30,19 +29,3 @@
         </ul>
     </section>
 </nav>
-
-<script>
-    function changeColor() {
-        var cookie = getCookie("colorCookie");
-        if (cookie=="light")
-            document.cookie="colorCookie=dark"
-        else
-            document.cookie="colorCookie=light"
-        location.reload();
-    }
-    function getCookie(name) {
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
-    }
-</script>

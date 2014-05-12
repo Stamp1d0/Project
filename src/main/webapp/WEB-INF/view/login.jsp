@@ -14,7 +14,7 @@
             </c:if>
             <div class="row">
                 <div class="name-field">
-                    <label><spring:message code="login.name"/>
+                    <label name="text"><spring:message code="login.name"/>
                         <input type='text' name='j_username' required/>
                     </label>
                     <small class="error"><spring:message code="login.reqname"/></small>
@@ -22,7 +22,7 @@
             </div>
             <div class="row">
                 <div class="name-field">
-                    <label><spring:message code="login.pass"/>
+                    <label name="text"><spring:message code="login.pass"/>
                         <input type='password' name='j_password' required/>
                     </label>
                     <small class="error"><spring:message code="login.reqpass"/></small>
@@ -30,7 +30,7 @@
             </div>
             <div>
                 <input type="checkbox" name="_spring_security_remember_me" />
-                <label><spring:message code="login.remember"/></label>
+                <label name="text"><spring:message code="login.remember"/></label>
             </div>
             <div style="text-align: center">
                 <input class="medium button" name="submit" type="submit" value="<spring:message code="login.enter"/>">
